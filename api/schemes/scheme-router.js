@@ -5,24 +5,6 @@ const Schemes = require('./scheme-model.js')
 
 const router = express.Router()
 
-/**
-  [GET] /api/schemes
-
-  response:
-  [
-    {
-      "scheme_id": 1,
-      "scheme_name": "World Domination",
-      "number_of_steps": 3
-    },
-    {
-      "scheme_id": 2,
-      "scheme_name": "Get Rich Quick",
-      "number_of_steps": 2
-    },
-    // etc
-  ]
- */
 router.get('/', (req, res, next) => {
   Schemes.find()
     .then(schemes => {

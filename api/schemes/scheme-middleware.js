@@ -6,7 +6,6 @@ async function checkSchemeId(req, res, next) {
     if (!existingScheme) {
       next({ status: 404, message: `scheme with scheme_id ${req.params} not found`})
     } else {
-      req.scheme = existingScheme
       next()
     }
   } catch (err) {
@@ -23,7 +22,7 @@ async function checkSchemeId(req, res, next) {
   }
 */
 function validateScheme(req, res, next) {
-  const { scheme_name } = req.body.scheme_name
+  const { scheme_name } = req.body
 
   if (!scheme_name || scheme_name === '' || typeof scheme_name !== 'string') {
     next({ status: 400, message: "invalid scheme_name"})
