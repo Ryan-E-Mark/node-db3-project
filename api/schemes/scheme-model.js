@@ -1,4 +1,15 @@
-function find() { // EXERCISE A
+const db = require('../../data/db-config')
+
+async function find() { // EXERCISE A
+  const result = await db('schemes as sc')
+    .leftJoin('steps as s', 'sc.scheme_id', 's.scheme_id')
+    .select('sc.scheme_id', 'sc.scheme_name', 's.step_id as number_of_steps')
+    .count('s.step_id as number_of_steps')
+    .groupBy('sc.scheme_id')
+    .orderBy('sc.scheme_id', 'asc')
+
+  return result
+
   /*
     1A- Study the SQL query below running it in SQLite Studio against `data/schemes.db3`.
     What happens if we change from a LEFT join to an INNER join?
